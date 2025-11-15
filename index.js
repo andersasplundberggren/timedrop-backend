@@ -13,10 +13,17 @@ const app = express();
 const server = http.createServer(app);
 
 const io = new SocketIOServer(server, {
-  cors: { origin: ["*"], methods: ["GET", "POST"] }
+  cors: { 
+    origin: ["https://timedrop.se", "https://www.timedrop.se", "http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+  }
 });
 
-app.use(cors());
+app.use(cors({
+  origin: ["https://timedrop.se", "https://www.timedrop.se", "http://localhost:3000"],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.static('public'));
 
