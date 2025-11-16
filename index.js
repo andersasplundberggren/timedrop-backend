@@ -1,5 +1,5 @@
 // ========================
-// HitFlick backend + Spotify - FIXED
+// TimeDrop backend + Spotify - PER-GAME TOKENS
 // ========================
 
 import 'dotenv/config';
@@ -28,19 +28,22 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', message: 'HitFlick backend is running locally' });
+  res.json({ status: 'ok', message: 'TimeDrop backend is running' });
 });
 
 // =========================
-// Spotify-konfiguration
+// Spotify-konfiguration - PER-GAME TOKENS ✅
 // =========================
 
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const SPOTIFY_REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 
-let spotifyTokens = null;
-let lastSpotifyState = null;
+// ✅ NY: Map för att lagra tokens per gameId
+const gameSpotifyTokens = new Map();
+
+// ✅ NY: Map för att lagra state per gameId (för säkerhet)
+const gameSpotifyStates = new Map();
 
 function generateRandomState(length = 16) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -51,20 +54,31 @@ function generateRandomState(length = 16) {
   return out;
 }
 
-function isSpotifyAuthed() {
-  if (!spotifyTokens) return false;
+// ✅ UPPDATERAD: Kolla om ett specifikt spel har giltig Spotify-token
+function isSpotifyAuthed(gameId) {
+  if (!gameId) return false;
+  const tokens = gameSpotifyTokens.get(gameId);
+  if (!tokens) return false;
   const now = Date.now() / 1000;
-  return spotifyTokens.expires_at && spotifyTokens.expires_at - now > 60;
+  return tokens.expires_at && tokens.expires_at - now > 60;
 }
 
-// Starta Spotify-login
+// ✅ UPPDATERAD: Starta Spotify-login med gameId
 app.get('/spotify-login', (req, res) => {
+  const { gameId } = req.query;
+  
+  if (!gameId) {
+    return res.status(400).send('Saknar gameId-parameter. Använd ?gameId=ABC123');
+  }
+  
   if (!SPOTIFY_CLIENT_ID || !SPOTIFY_REDIRECT_URI) {
     return res.status(500).send('Spotify är inte korrekt konfigurerat (.env saknas?).');
   }
 
-  const state = generateRandomState();
-  lastSpotifyState = state;
+  // ✅ Generera unik state med gameId embedded
+  const randomPart = generateRandomState();
+  const state = `${gameId}:${randomPart}`;
+  gameSpotifyStates.set(gameId, state);
 
   const scopes = [
     'user-read-email',
@@ -86,7 +100,7 @@ app.get('/spotify-login', (req, res) => {
   return res.redirect(authUrl);
 });
 
-// Callback från Spotify
+// ✅ UPPDATERAD: Callback från Spotify - spara token per gameId
 app.get('/spotify-callback', async (req, res) => {
   const { code, state, error } = req.query;
 
@@ -95,8 +109,23 @@ app.get('/spotify-callback', async (req, res) => {
     return res.status(400).send(`Spotify-fel: ${error}`);
   }
 
-  if (!state || state !== lastSpotifyState) {
-    console.error('Spotify state mismatch');
+  if (!state) {
+    console.error('Spotify state missing');
+    return res.status(400).send('Ogiltig state-token (försök logga in igen).');
+  }
+
+  // ✅ Extrahera gameId från state
+  const [gameId, randomPart] = state.split(':');
+  
+  if (!gameId) {
+    console.error('Could not extract gameId from state');
+    return res.status(400).send('Ogiltig state-format.');
+  }
+
+  // ✅ Verifiera state
+  const expectedState = gameSpotifyStates.get(gameId);
+  if (!expectedState || state !== expectedState) {
+    console.error('Spotify state mismatch for game:', gameId);
     return res.status(400).send('Ogiltig state-token (försök logga in igen).');
   }
 
@@ -126,19 +155,24 @@ app.get('/spotify-callback', async (req, res) => {
     }
 
     const now = Date.now() / 1000;
-    spotifyTokens = {
+    
+    // ✅ Spara token för detta specifika gameId
+    gameSpotifyTokens.set(gameId, {
       access_token: data.access_token,
       refresh_token: data.refresh_token,
       expires_at: now + (data.expires_in || 3600)
-    };
+    });
 
-    console.log('Spotify inloggad. Token giltig i ~', data.expires_in, 'sekunder');
+    // ✅ Rensa state efter lyckad inloggning
+    gameSpotifyStates.delete(gameId);
+
+    console.log(`✅ Spotify inloggad för spel ${gameId}. Token giltig i ~${data.expires_in} sekunder`);
 
     return res.send(`
       <html>
-        <body style="background:#0b1120;color:#e5e7eb;font-family:system-ui;">
-          <h1>Spotify-inloggning klar ✅</h1>
-          <p>Du är nu inloggad mot Spotify för HitFlick.</p>
+        <body style="background:#0b1120;color:#e5e7eb;font-family:system-ui;padding:2rem;text-align:center;">
+          <h1>✅ Spotify-inloggning klar!</h1>
+          <p>Ditt Spotify Premium-konto är nu anslutet till spel <strong>${gameId}</strong>.</p>
           <p>Stäng denna flik och gå tillbaka till spelet.</p>
           <script>setTimeout(() => window.close(), 2000);</script>
         </body>
@@ -150,17 +184,31 @@ app.get('/spotify-callback', async (req, res) => {
   }
 });
 
-// Enkel status-endpoint
+// ✅ UPPDATERAD: Status-endpoint med gameId
 app.get('/spotify-status', (req, res) => {
-  res.json({ authed: isSpotifyAuthed() });
+  const { gameId } = req.query;
+  
+  if (!gameId) {
+    return res.status(400).json({ error: 'Saknar gameId-parameter' });
+  }
+  
+  res.json({ authed: isSpotifyAuthed(gameId) });
 });
 
-// Endpoint för att hämta access token (för Web Playback SDK)
+// ✅ UPPDATERAD: Hämta access token för specifikt spel
 app.get('/spotify-token', (req, res) => {
-  if (!isSpotifyAuthed()) {
-    return res.status(401).json({ error: 'Not authenticated' });
+  const { gameId } = req.query;
+  
+  if (!gameId) {
+    return res.status(400).json({ error: 'Saknar gameId-parameter' });
   }
-  res.json({ access_token: spotifyTokens.access_token });
+  
+  if (!isSpotifyAuthed(gameId)) {
+    return res.status(401).json({ error: 'Not authenticated for this game' });
+  }
+  
+  const tokens = gameSpotifyTokens.get(gameId);
+  res.json({ access_token: tokens.access_token });
 });
 
 // Hämta tillgängliga kategorier
@@ -179,24 +227,30 @@ app.get('/song-categories', (req, res) => {
   res.json({ categories });
 });
 
-// Spotify-sökning
+// ✅ UPPDATERAD: Spotify-sökning med gameId
 app.get('/spotify-search', async (req, res) => {
   const query = req.query.q;
+  const gameId = req.query.gameId;
 
   if (!query) {
     return res.json({ error: 'Saknar sökfråga (använd ?q=...)' });
   }
 
-  if (!isSpotifyAuthed()) {
-    return res.json({ error: 'Inte inloggad på Spotify.' });
+  if (!gameId) {
+    return res.json({ error: 'Saknar gameId-parameter' });
+  }
+
+  if (!isSpotifyAuthed(gameId)) {
+    return res.json({ error: 'Inte inloggad på Spotify för detta spel.' });
   }
 
   try {
+    const tokens = gameSpotifyTokens.get(gameId);
     const searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track&limit=10`;
 
     const searchResponse = await fetch(searchUrl, {
       headers: {
-        'Authorization': `Bearer ${spotifyTokens.access_token}`
+        'Authorization': `Bearer ${tokens.access_token}`
       }
     });
 
@@ -207,7 +261,6 @@ app.get('/spotify-search', async (req, res) => {
       return res.json({ error: data.error?.message || 'Spotify API-fel' });
     }
 
-    // Formatera resultatet
     const tracks = data.tracks.items.map(track => ({
       id: track.id,
       title: track.name,
@@ -228,7 +281,7 @@ app.get('/spotify-search', async (req, res) => {
 });
 
 // =========================
-// HitFlick spel-logik
+// TimeDrop spel-logik
 // =========================
 
 const games = {};
@@ -280,7 +333,6 @@ function buildScores(game) {
   return arr;
 }
 
-// Kolla om en tidslinje är helt korrekt sorterad
 function isTimelineCorrect(timeline, songLibrary) {
   if (!timeline || timeline.length < 2) return true;
   
@@ -294,17 +346,15 @@ function isTimelineCorrect(timeline, songLibrary) {
   return true;
 }
 
-// Beräkna poäng baserat på korrekt placering
 function calculateTimelinePoints(timeline, currentSongId, songLibrary) {
   if (!timeline || !currentSongId) return 0;
   
   const currentIndex = timeline.indexOf(currentSongId);
-  if (currentIndex === -1) return 0; // Inte placerad
+  if (currentIndex === -1) return 0;
   
   const currentSong = songLibrary[currentSongId];
   if (!currentSong || !currentSong.year) return 0;
   
-  // Kolla om låten före är äldre (om det finns en)
   let correctBefore = true;
   if (currentIndex > 0) {
     const songBefore = songLibrary[timeline[currentIndex - 1]];
@@ -315,7 +365,6 @@ function calculateTimelinePoints(timeline, currentSongId, songLibrary) {
     }
   }
   
-  // Kolla om låten efter är nyare (om det finns en)
   let correctAfter = true;
   if (currentIndex < timeline.length - 1) {
     const songAfter = songLibrary[timeline[currentIndex + 1]];
@@ -326,40 +375,37 @@ function calculateTimelinePoints(timeline, currentSongId, songLibrary) {
     }
   }
   
-  // Striktare poängberäkning:
-  // Båda måste vara rätt för att få poäng
   if (correctBefore && correctAfter) {
-    return 10; // Perfekt placerad
+    return 10;
   }
   
-  // Om bara början eller slutet, ge lite poäng
   if (timeline.length === 1) {
-    return 10; // Första låten är alltid rätt
+    return 10;
   }
   
   if (currentIndex === 0 && correctAfter) {
-    return 8; // Först och rätt efter
+    return 8;
   }
   
   if (currentIndex === timeline.length - 1 && correctBefore) {
-    return 8; // Sist och rätt före
+    return 8;
   }
   
-  return 0; // Fel placerad
+  return 0;
 }
 
+// ✅ UPPDATERAD: Radera Spotify-token när spel avslutas
 function sendFinalAndEnd(gameId, reason) {
   const game = games[gameId];
   if (!game) return;
 
   const scores = buildScores(game);
   
-  // Bygg facit från de låtar som faktiskt spelades - SORTERAT EFTER ÅRTAL
   const answer = [...game.playedSongs]
     .sort((a, b) => {
       const yearA = a.year || 9999;
       const yearB = b.year || 9999;
-      return yearA - yearB; // Äldst först
+      return yearA - yearB;
     })
     .map(song => ({
       title: song.artist ? `${song.artist} – ${song.title}` : song.title,
@@ -373,6 +419,17 @@ function sendFinalAndEnd(gameId, reason) {
     answer
   });
 
+  // ✅ NY: Radera Spotify-token för detta spel
+  if (gameSpotifyTokens.has(gameId)) {
+    gameSpotifyTokens.delete(gameId);
+    console.log(`🗑️ Raderade Spotify-token för spel ${gameId}`);
+  }
+  
+  // ✅ NY: Radera eventuell kvarvarande state
+  if (gameSpotifyStates.has(gameId)) {
+    gameSpotifyStates.delete(gameId);
+  }
+
   delete games[gameId];
   console.log(`Game ${gameId} ended: ${reason}`);
 }
@@ -380,17 +437,15 @@ function sendFinalAndEnd(gameId, reason) {
 // Socket.io events
 io.on('connection', (socket) => {
   console.log('Client connected:', socket.id);
-  socket.emit('connected', { message: 'Welcome to HitFlick server (local)' });
+  socket.emit('connected', { message: 'Welcome to TimeDrop server' });
 
-  // Skapa spel
   socket.on('create_game', (payload = {}) => {
     const { mode, rounds, categories } = payload;
 
-    const normalizedMode = 'timeline'; // Alltid timeline nu
+    const normalizedMode = 'timeline';
 
     const gameId = generateGameId();
     
-    // Välj låtar baserat på kategorier eller fallback till demo
     let songOrder;
     if (categories && categories.length > 0) {
       songOrder = getRandomSongs(categories, parseInt(rounds, 10) || 5);
@@ -414,11 +469,10 @@ io.on('connection', (socket) => {
       mode: normalizedMode,
       songOrder,
       rounds: chosenRounds,
-      songLibrary: {}, // Lagrar alla låtar som används (demo + Spotify)
-      playedSongs: []   // Lagrar låtar i den ordning de spelades
+      songLibrary: {},
+      playedSongs: []
     };
 
-    // Fyll songLibrary med valda låtar
     songOrder.forEach(song => {
       games[gameId].songLibrary[song.id] = song;
     });
@@ -434,7 +488,6 @@ io.on('connection', (socket) => {
     });
   });
 
-  // Join spel
   socket.on('join_game', ({ gameId, playerName }) => {
     const game = games[gameId];
     if (!game) {
@@ -465,7 +518,7 @@ io.on('connection', (socket) => {
     console.log(`${cleanName} joined game ${gameId}`);
   });
 
-  // Starta Timeline-runda (endast låtar från låtbiblioteket)
+  // ✅ UPPDATERAD: Auto-sökning använder spelets token
   socket.on('start_round', async ({ gameId }) => {
     const game = games[gameId];
     if (!game || socket.id !== game.hostId) return;
@@ -473,7 +526,6 @@ io.on('connection', (socket) => {
     let selectedSong = null;
     let autoSearchedPreview = null;
     
-    // Välj nästa låt från songOrder (låtbiblioteket)
     const songs = game.songOrder || demoSongs;
     if (game.currentRoundIndex >= Math.min(game.rounds, songs.length)) {
       io.to(game.hostId).emit('no_more_songs', {
@@ -485,29 +537,28 @@ io.on('connection', (socket) => {
     
     selectedSong = songs[game.currentRoundIndex];
     
-    // Auto-sök på Spotify för att få preview OCH Spotify URI
     let spotifyUri = null;
     let spotifyTrackId = null;
     
-    if (isSpotifyAuthed()) {
-      console.log(`🔍 Auto-söker Spotify: ${selectedSong.artist} – ${selectedSong.title}`);
+    // ✅ UPPDATERAD: Använd spelets token för auto-sökning
+    if (isSpotifyAuthed(gameId)) {
+      console.log(`🔍 Auto-söker Spotify för spel ${gameId}: ${selectedSong.artist} – ${selectedSong.title}`);
       try {
-        // Förbättrad sökning: artist:xxx track:xxx ger bättre resultat
+        const tokens = gameSpotifyTokens.get(gameId);
         const searchQuery = `artist:${selectedSong.artist} track:${selectedSong.title}`;
         const searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchQuery)}&type=track&limit=5`;
         
         const response = await fetch(searchUrl, {
-          headers: { 'Authorization': `Bearer ${spotifyTokens.access_token}` }
+          headers: { 'Authorization': `Bearer ${tokens.access_token}` }
         });
         
         if (response.ok) {
           const data = await response.json();
           if (data.tracks && data.tracks.items.length > 0) {
-            // Ta första träffen (oftast mest relevant)
             const track = data.tracks.items[0];
             autoSearchedPreview = track.preview_url;
-            spotifyUri = track.uri; // spotify:track:xxxxx
-            spotifyTrackId = track.id; // xxxxx
+            spotifyUri = track.uri;
+            spotifyTrackId = track.id;
             
             console.log(`✅ Hittade Spotify-låt: ${track.artists[0].name} – ${track.name}`);
             console.log(`   URI: ${spotifyUri}`);
@@ -525,7 +576,7 @@ io.on('connection', (socket) => {
         console.log('❌ Auto-search failed:', err.message);
       }
     } else {
-      console.log('⚠️ Spotify inte anslutet');
+      console.log(`⚠️ Spotify inte anslutet för spel ${gameId}`);
     }
     
     if (!selectedSong) {
@@ -536,12 +587,10 @@ io.on('connection', (socket) => {
     game.currentSong = selectedSong;
     game.guesses = {};
     
-    // Spara låten i playedSongs (för facit)
     game.playedSongs.push(selectedSong);
 
     console.log(`Timeline round ${game.currentRoundIndex + 1}/${game.rounds}: ${selectedSong.title}`);
 
-    // Använd auto-sökt preview om den finns
     const previewUrl = autoSearchedPreview || selectedSong.previewUrl || null;
 
     io.to(gameId).emit('timeline_round_started', {
@@ -552,11 +601,10 @@ io.on('connection', (socket) => {
         id: selectedSong.id, 
         title: selectedSong.title,
         artist: selectedSong.artist || '',
-        previewUrl: previewUrl // 🎵 Auto-sökt eller original preview
+        previewUrl: previewUrl
       }
     });
     
-    // Skicka preview till master (för uppspelning där)
     if (previewUrl || spotifyUri) {
       io.to(game.hostId).emit('master_preview', {
         gameId,
@@ -571,7 +619,6 @@ io.on('connection', (socket) => {
     game.currentRoundIndex += 1;
   });
 
-  // Placera låt i timeline
   socket.on('submit_position', ({ gameId, position }) => {
     const game = games[gameId];
     if (!game) return;
@@ -599,17 +646,15 @@ io.on('connection', (socket) => {
     }
 
     const readableTimeline = player.timeline.map((sid) => {
-      // Kolla först i spelets songLibrary (innehåller både demo + Spotify)
       const s = game.songLibrary[sid];
       if (s) {
         return s.artist ? `${s.artist} – ${s.title}` : s.title;
       }
-      return sid; // Fallback till ID om låten inte hittas
+      return sid;
     });
 
     socket.emit('position_received', { gameId, timeline: readableTimeline });
 
-    // FIX #1: Skicka uppdaterad tidslinje till master
     if (game.hostId) {
       io.to(game.hostId).emit('timeline_player_update', {
         gameId,
@@ -625,12 +670,10 @@ io.on('connection', (socket) => {
     const allSubmitted = playerIds.length > 0 && playerIds.every((id) => game.guesses[id]);
     
     if (allSubmitted) {
-      // Alla har placerat - räkna poäng automatiskt
       endTimelineRound(game);
     }
   });
 
-  // Avsluta Timeline-runda manuellt
   socket.on('end_timeline_round', ({ gameId }) => {
     const game = games[gameId];
     if (!game || socket.id !== game.hostId) return;
@@ -638,14 +681,12 @@ io.on('connection', (socket) => {
     endTimelineRound(game);
   });
 
-  // FIX #2: Korrekt poängberäkning
   function endTimelineRound(game) {
     if (!game.currentSong) return;
 
     const timelines = [];
     const playerIds = Object.keys(game.players);
 
-    // Bygg korrekt ordning från playedSongs
     const correctOrder = [...game.playedSongs].sort((a, b) => {
       const yearA = a.year || 9999;
       const yearB = b.year || 9999;
@@ -656,23 +697,18 @@ io.on('connection', (socket) => {
       const p = game.players[id];
       const ids = p.timeline || [];
       
-      // Hitta position för current song i spelarens tidslinje
       const currentSongIndex = ids.indexOf(game.currentSong.id);
       
       let points = 0;
       if (currentSongIndex !== -1) {
-        // Hitta var låten BORDE vara
         const correctIndex = correctOrder.findIndex(s => s.id === game.currentSong.id);
         
-        // Om första låten - alltid rätt
         if (ids.length === 1) {
           points = 10;
         } else {
-          // Kolla om låten är på rätt position RELATIVT till de andra
           const currentSong = game.songLibrary[game.currentSong.id];
           let correctPlacement = true;
           
-          // Kolla alla låtar FÖRE denna position
           for (let i = 0; i < currentSongIndex; i++) {
             const otherSong = game.songLibrary[ids[i]];
             if (otherSong && otherSong.year > currentSong.year) {
@@ -681,7 +717,6 @@ io.on('connection', (socket) => {
             }
           }
           
-          // Kolla alla låtar EFTER denna position
           for (let i = currentSongIndex + 1; i < ids.length; i++) {
             const otherSong = game.songLibrary[ids[i]];
             if (otherSong && otherSong.year < currentSong.year) {
@@ -712,7 +747,7 @@ io.on('connection', (socket) => {
         name: p.name, 
         timeline: readable, 
         correct,
-        points // Poäng för denna runda
+        points
       });
     });
 
@@ -739,7 +774,6 @@ io.on('connection', (socket) => {
     console.log('Timeline round ended. Scores:', scores);
   }
 
-  // Avsluta spel
   socket.on('end_game', ({ gameId }) => {
     const game = games[gameId];
     if (!game) return;
@@ -755,5 +789,5 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`HitFlick backend listening on http://localhost:${PORT}`);
+  console.log(`TimeDrop backend listening on http://localhost:${PORT}`);
 });
