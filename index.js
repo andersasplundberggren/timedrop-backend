@@ -545,16 +545,17 @@ io.on('connection', (socket) => {
     const previewUrl = autoSearchedPreview || selectedSong.previewUrl || null;
 
     io.to(gameId).emit('timeline_round_started', {
-      gameId,
-      round: game.currentRoundIndex + 1,
-      totalRounds: game.rounds,
-      song: { 
-        id: selectedSong.id, 
-        title: selectedSong.title,
-        artist: selectedSong.artist || '',
-        previewUrl: previewUrl // 🎵 Auto-sökt eller original preview
-      }
-    });
+  gameId,
+  round: game.currentRoundIndex + 1,
+  totalRounds: game.rounds,
+  song: { 
+    id: selectedSong.id, 
+    title: selectedSong.title,
+    artist: selectedSong.artist || '',
+    previewUrl: previewUrl
+  },
+  item: selectedSong // ✅ Skicka hela objektet för multi-quiz support
+});
     
     // Skicka preview till master (för uppspelning där)
     if (previewUrl || spotifyUri) {
