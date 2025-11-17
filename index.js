@@ -67,12 +67,9 @@ app.get('/spotify-login', (req, res) => {
   lastSpotifyState = state;
 
   const scopes = [
-    'user-read-email',
-    'user-read-private',
-    'streaming',
-    'user-read-playback-state',
-    'user-modify-playback-state'
-  ].join(' ');
+  'user-read-email',
+  'user-read-private'
+].join(' ');
 
   const params = new URLSearchParams({
     response_type: 'code',
@@ -571,16 +568,14 @@ io.on('connection', (socket) => {
     });
     
     // Skicka preview till master (för uppspelning där)
-    if (previewUrl || spotifyUri) {
-      io.to(game.hostId).emit('master_preview', {
-        gameId,
-        previewUrl,
-        spotifyUri,
-        spotifyTrackId,
-        title: selectedItem.title,
-        artist: selectedItem.artist
-      });
-    }
+    if (previewUrl) {
+  io.to(game.hostId).emit('master_preview', {
+    gameId,
+    previewUrl,
+    title: selectedItem.title,
+    artist: selectedItem.artist
+  });
+}
 
     game.currentRoundIndex += 1;
   });
