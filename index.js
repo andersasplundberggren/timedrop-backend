@@ -675,8 +675,8 @@ io.on('connection', (socket) => {
       item: selectedItem // Generiskt objekt med all data
     });
     
-    // Skicka media-preview till master
-    if (previewUrl || spotifyUri || youtubeId || imageUrl) {
+    // Skicka media-preview till master (ALLTID för historia, även utan media)
+    if (previewUrl || spotifyUri || youtubeId || imageUrl || game.quizType === 'history') {
       io.to(game.hostId).emit('master_preview', {
         gameId,
         // Spotify (endast för musik)
@@ -694,7 +694,8 @@ io.on('connection', (socket) => {
         inventor: selectedItem.inventor, // För uppfinningar
         platform: selectedItem.platform, // För spel
         category: selectedItem.category, // För historia
-        description: selectedItem.description // För historia
+        description: selectedItem.description, // För historia
+        year: selectedItem.year // För tidslinje
       });
     }
 
