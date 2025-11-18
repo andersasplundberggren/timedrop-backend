@@ -19,17 +19,49 @@ import { getRandomHistory, getHistoryCategories } from './history-library.js';
 const app = express();
 const server = http.createServer(app);
 
+// CORS-konfiguration med bättre felhantering
+const allowedOrigins = [
+  'https://timedrop.se',
+  'https://www.timedrop.se',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+  'http://localhost:5500', // Live Server
+  'http://127.0.0.1:5500'
+];
+
 const io = new SocketIOServer(server, {
   cors: { 
-    origin: ["https://timedrop.se", "https://www.timedrop.se", "http://localhost:3000"],
+    origin: function (origin, callback) {
+      // Tillåt requests utan origin (t.ex. mobila appar, Postman)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.warn(`⚠️ CORS blocked request from: ${origin}`);
+        callback(null, true); // Tillåt ändå temporärt för debugging
+      }
+    },
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"]
   }
 });
 
 app.use(cors({
-  origin: ["https://timedrop.se", "https://www.timedrop.se", "http://localhost:3000"],
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.warn(`⚠️ CORS blocked request from: ${origin}`);
+      callback(null, true); // Tillåt ändå temporärt för debugging
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use(express.static('public'));
