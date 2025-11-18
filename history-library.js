@@ -893,9 +893,24 @@ function getRandomHistory(categories, count) {
   return shuffled.slice(0, Math.min(count, shuffled.length));
 }
 
-module.exports = {
-  historyLibrary,
-  getHistoryCategories,
-  getHistoryByCategories,
-  getRandomHistory
-};
+// Export som ES6 modules för att matcha index.js
+export { historyLibrary };
+export function getHistoryCategories() {
+  const categories = [...new Set(historyLibrary.map(event => event.category))];
+  return categories.sort();
+}
+export function getHistoryByCategories(categories) {
+  if (!categories || categories.length === 0) {
+    return historyLibrary;
+  }
+  return historyLibrary.filter(event => categories.includes(event.category));
+}
+export function getRandomHistory(categories, count) {
+  let pool = getHistoryByCategories(categories);
+  
+  // Blanda arrayen
+  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  
+  // Ta ut rätt antal
+  return shuffled.slice(0, Math.min(count, shuffled.length));
+}
