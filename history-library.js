@@ -135,13 +135,13 @@ const historyLibrary = [
     description: 'Genom en ny skolordning beslutas att alla barn i landet ska få grundläggande undervisning. Varje socken får ansvar för att ordna skola, lokaler och lärare, vilket steg för steg bygger upp ett nationellt skolsystem. Reformen ökar läskunnigheten, ger fler möjlighet att ta del av samhällsinformation och minskar skillnaderna mellan olika delar av landet.'
   },
   
-  // VÄRLDEN - Viktiga globala händelser
+   // VÄRLDEN - Viktiga globala händelser
   {
     id: 'hist19',
     title: 'Kolumbus upptäcker Amerika',
     category: 'Världen',
     year: 1492,
-    description: 'Christoffer Kolumbus når Västindien',
+    description: 'Genom att segla västerut från Europa når Christopher Kolumbus en övärld som då är okänd för honom och hans sponsorer. Denna resa öppnar upp en helt ny transatlantisk länk mellan kontinenter och utlöser omfattande handelsflöden, kulturmöten och koloniseringar som förändrar världsbilden för miljoner människor.',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Christopher_Columbus3.jpg/300px-Christopher_Columbus3.jpg'
   },
   {
@@ -149,7 +149,7 @@ const historyLibrary = [
     title: 'Franska revolutionen',
     category: 'Världen',
     year: 1789,
-    description: 'Revolutionen bryter ut i Frankrike - monarkin störtas',
+    description: 'En folklig uppror mot envälde och privilegier i Frankrike växer till en omfattande samhällsomvandling. Revolutionen avskaffar den gamla orden, sprider ideal om frihet, jämlikhet och broderskap och inspirerar liknande rörelser i andra länder. Effekterna blir politiska, sociala och kulturmässiga och formar nya sätt att tänka på stat och medborgarskap.',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Prise_de_la_Bastille.jpg/400px-Prise_de_la_Bastille.jpg'
   },
   {
@@ -157,14 +157,14 @@ const historyLibrary = [
     title: 'Napoleons kröning',
     category: 'Världen',
     year: 1804,
-    description: 'Napoleon Bonaparte kröns till kejsare av Frankrike'
+    description: 'Napoleon Bonaparte genomför ett dramatiskt markeringstillfälle där han tar emot kejsartiteln i Frankrike, vilket symboliserar en återgång till stark centralmakt under innovativa militära och administrativa former. Händelsen skapar ett nytt skede i europeisk maktbalans och visar på hur maktpersoner kan utnyttja revolutionära förhållanden för att konsolidera kontroll.',
   },
   {
     id: 'hist22',
     title: 'Slaget vid Waterloo',
     category: 'Världen',
     year: 1815,
-    description: 'Napoleon besegras slutgiltigt',
+    description: 'En stor koalition av europeiska stater lyckas besegra Napoleons armé i ett avgörande fältslag, vilket markerar slutet på hans ambitiösa försök att dominera kontinenten. Slaget blir symbol för att stormakters expansion kan slås tillbaka och banar väg för en ny ordning med mer förutsägbara väst­ europeiska relationer.',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Battle_of_Waterloo_1815.PNG/400px-Battle_of_Waterloo_1815.PNG'
   },
   {
@@ -172,21 +172,21 @@ const historyLibrary = [
     title: 'Amerikanska inbördeskriget börjar',
     category: 'Världen',
     year: 1861,
-    description: 'Sydstaterna bryter sig ur unionen'
+    description: 'I USA bryter staten nord mot syd ur ett djupt splittrat samhälle där slaveri, nationalstatens roll och ekonomisk utveckling står på spel. Konflikten blir en blodig kamp om union eller separation och om vad en demokrati ska stå för, med konsekvenser som ifrågasätter människors värde och roll i samhället.',
   },
   {
     id: 'hist24',
     title: 'Abraham Lincoln mördas',
     category: 'Världen',
     year: 1865,
-    description: 'USA:s president skjuts på teater i Washington'
+    description: 'USA:s president befinner sig på teater när en motståndare av de krafter som värnar om separation och slaveri skjuter honom. Mordet blir ett chock-ögonblick för nationen, en påminnelse om att politisk förändring kan vara farlig och att våldet kan slå tillbaka mot dem som står för reformer och nationell enhet.',
   },
   {
     id: 'hist25',
     title: 'Berlinmuren byggs',
     category: 'Världen',
     year: 1961,
-    description: 'Östtyskland bygger mur genom Berlin',
+    description: 'I staden Berlin reser sig en fysisk mur och gränser innan osynliga maktsfärer blir synliga – familjer skiljs åt, människor försöker fly och världen blir tydligt delad i två ideologiska läger. Muren blir symbol för kalla krigets maktkamp och hur ideologier kan byggas in i landskapet.',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Berlinermauer.jpg/400px-Berlinermauer.jpg'
   },
   {
@@ -194,7 +194,7 @@ const historyLibrary = [
     title: 'Berlinmuren faller',
     category: 'Världen',
     year: 1989,
-    description: 'Murens fall symboliserar slutet på kalla kriget',
+    description: 'Efter år av spänd väntan och förändringar öppnas muren mellan öst och väst i Berlin och människor möts igen. Händelsen blir en stark symbol för slutet på den ideologiska uppdelningen och visar hur förändring, folk­rörelser och diplomati kan riva barriärer – både konkreta och mentala.',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Thefalloftheberlinwall1989.JPG/400px-Thefalloftheberlinwall1989.JPG'
   },
   {
@@ -202,56 +202,56 @@ const historyLibrary = [
     title: 'Sovjetunionen upplöses',
     category: 'Världen',
     year: 1991,
-    description: 'USSR upphör att existera'
+    description: 'En federation av republiker går i grunden igenom ett upplösningsskede efter interna politiska och ekonomiska spänningar, och de djupt ideologiska strukturer som byggts upp under generationer löses upp. Händelsen visar hur även supermakter kan förändras och hur gränser, identitet och makt kan omformas på relativt kort tid.',
   },
   {
     id: 'hist28',
     title: 'Nelson Mandela frisläpps',
     category: 'Världen',
     year: 1990,
-    description: 'Efter 27 år i fängelse frisläpps Mandela'
+    description: 'Efter lång fångenskap går Nelson Mandela fri och blir en symbol för kamp mot apartheid och för försoning. Hans frigivning signalerar en ny era för sitt land och inspirerar människor världen över att tro på förändring trots årtionden av förtryck.',
   },
   {
     id: 'hist29',
     title: 'Apartheid avskaffas i Sydafrika',
     category: 'Världen',
     year: 1994,
-    description: 'Första demokratiska val - Mandela blir president'
+    description: 'En nation där rassegregation, diskriminering och begränsad rösträtt varit norm bryter med sin tidigare ordning när fria val hålls och en majoritetsbefolkning tar makten. Händelsen markerar ett historiskt brott med koloniala och rasbaserade strukturer och blir globalt erkänt som ett steg mot mänskliga rättigheter.',
   },
   {
     id: 'hist30',
     title: 'Kina blir republik',
     category: 'Världen',
     year: 1912,
-    description: 'Qing-dynastin störtas - Republiken Kina bildas'
+    description: 'Kina övergår från dynastisk kejsarmakt till att bli en republikär stat – ett strukturellt skifte som speglar världens bredare modernisering. Övergången öppnar för nya politiska idéer, internationellt inflytande och en omvandling av det inhemska samhället när gamla maktordningar bryts ned.',
   },
   {
     id: 'hist31',
     title: 'Folkrepubliken Kina utropas',
     category: 'Världen',
     year: 1949,
-    description: 'Mao Zedong proklamerar Folkrepubliken Kina'
+    description: 'Efter inre konflikt och global omstrukturering samlas en kommunistisk ledning under Mao Zedong som utropar en ny statlig form – folkrepubliken. Händelsen blir en viktig del i kalla krigets kontext och påverkar både Asiens och världens politiska karta under lång tid.',
   },
   {
     id: 'hist32',
     title: 'Indiens självständighet',
     category: 'Världen',
     year: 1947,
-    description: 'Indien blir oberoende från Storbritannien'
+    description: 'Efter århundraden av kolonialt styre från Storbritannien blir Indien självständigt och tar kontroll över sin framtid. Friheten möjliggör social och ekonomisk förändring och ger en stor befolkning möjlighet att delta i global politik på nya villkor.',
   },
   {
     id: 'hist33',
     title: 'Brexit-folkomröstningen',
     category: 'Världen',
     year: 2016,
-    description: 'Storbritannien röstar för att lämna EU'
+    description: 'Invånarna i Storbritannien tar ställning i en omröstning om fortsatt medlemskap i Europeiska unionen. Resultatet skapar politiska kedje­reaktioner, frågor om suveränitet och ekonomiskt samarbete, och illustrerar hur folket – inte bara regeringar – kan ändra internationella relationer.',
   },
   {
     id: 'hist34',
     title: 'Storbritannien lämnar EU',
     category: 'Världen',
     year: 2020,
-    description: 'Brexit genomförs officiellt'
+    description: 'Efter den politiska processen från folkomröstningen genomförs formellt utträdet ur Europeiska unionen. Händelsen påverkar både nationella lagar, handel, migration och EU:s framtid, och blir ett exempel på hur globala institutioner och medlemsländer påverkar varandra.',
   },
 
   // KRIG - Stora krig och konflikter
