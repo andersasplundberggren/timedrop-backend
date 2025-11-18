@@ -868,31 +868,6 @@ const historyLibrary = [
   },
 ];
 
-// Funktion för att hämta alla tillgängliga kategorier
-function getHistoryCategories() {
-  const categories = [...new Set(historyLibrary.map(event => event.category))];
-  return categories.sort();
-}
-
-// Funktion för att hämta händelser baserat på kategorier
-function getHistoryByCategories(categories) {
-  if (!categories || categories.length === 0) {
-    return historyLibrary;
-  }
-  return historyLibrary.filter(event => categories.includes(event.category));
-}
-
-// Funktion för att få slumpmässiga händelser
-function getRandomHistory(categories, count) {
-  let pool = getHistoryByCategories(categories);
-  
-  // Blanda arrayen
-  const shuffled = [...pool].sort(() => Math.random() - 0.5);
-  
-  // Ta ut rätt antal
-  return shuffled.slice(0, Math.min(count, shuffled.length));
-}
-
 // Export som ES6 modules för att matcha index.js
 export { historyLibrary };
 export function getHistoryCategories() {
