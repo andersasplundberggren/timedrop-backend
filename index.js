@@ -492,16 +492,18 @@ io.on('connection', (socket) => {
       //   console.log(`🎮 Creating game quiz with ${itemOrder.length} games`);
       //   break;
       
-      case 'music':
-      default:
-        // MUSIKQUIZ (standard)
-        if (categories && categories.length > 0) {
-          itemOrder = getRandomSongs(categories, chosenRounds);
-        } else {
-          itemOrder = shuffled(demoSongs);
-        }
-        console.log(`🎵 Creating music quiz with ${itemOrder.length} songs`);
-        break;
+     case 'music':
+    default:
+  // MUSIKQUIZ (standard)
+  if (categories && categories.length > 0) {
+    itemOrder = getRandomSongs(categories, chosenRounds);
+  } else {
+    // Slumpa från ALLA musikkategorier istället för demo-låtar
+    const allMusicCategories = Object.keys(songCategories);
+    itemOrder = getRandomSongs(allMusicCategories, chosenRounds);
+  }
+  console.log(`🎵 Creating music quiz with ${itemOrder.length} songs`);
+  break;
     }
 
     let maxRounds = itemOrder.length;
