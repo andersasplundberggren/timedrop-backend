@@ -9,131 +9,161 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1523,
     description: 'Gustav Vasa väljs till kung efter att ha lett ett uppror mot den danska övermakten och Kalmarunionen. Genom att samla rikets makt till en stark kungaroll lägger han grunden för en mer sammanhållen svensk stat med gemensamt skattesystem, central styrning från Stockholm och en tydligare nationell identitet.',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Gustav_Vasa_by_Jakob_Bin%C3%A4ck_-_Nationalmuseum_-_16210.jpg/300px-Gustav_Vasa_by_Jakob_Bin%C3%A4ck_-_Nationalmuseum_-_16210.jpg'
+    imageUrl: 'timedrop/history/sverige/hist1-gustav-vasa-blir-kung.jpg'
   },
   {
     id: 'hist2',
     title: 'Stockholms blodbad',
     category: 'Sverige',
     year: 1520,
-    description: 'Under en kunglig kröningsfest i Stockholm grips en stor grupp svenska adelsmän, präster och borgare anklagade för förräderi. På Stortorget i Gamla stan avrättas ett stort antal personer offentligt, vilket skapar skräck i riket men också väcker starkt motstånd. Händelsen blir en vändpunkt som eldar på upproren mot den danska kungen och banar väg för Gustav Vasas maktövertagande.',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Stockholm_Bloodbath.jpg/400px-Stockholm_Bloodbath.jpg'
+    description: 'Under en kunglig kröningsfest i Stockholm grips en stor grupp svenska adelsmän, präster och borgare anklagade för högförräderi. På Stortorget i Gamla stan avrättas ett stort antal personer offentligt, vilket sprider skräck i riket men också väcker stark vrede. Händelsen blir en katalysator för det motstånd som till slut störtar den danska kungen och banar väg för Gustav Vasas maktövertagande.',
+    imageUrl: 'timedrop/history/sverige/hist2-stockholms-blodbad.jpg'
   },
   {
     id: 'hist3',
     title: 'Reformationen i Sverige',
     category: 'Sverige',
     year: 1527,
-    description: 'Vid en stor rikssamling i Västerås bryter Sverige med den katolska kyrkan och ansluter sig till den lutherska läran. Kungamakten tar över mycket av kyrkans rikedomar och inflytande, vilket ger staten större kontroll över både ekonomi och religion. Beslutet förändrar det religiösa livet, gudstjänstspråket och människors relation till kyrkan under lång tid framåt.'
+    description: 'Vid en stor rikssamling i Västerås bryter Sverige stegvis med den katolska kyrkan och den påvliga makten. Kyrkans rikedomar dras in till kronan och kungen får ökat inflytande över religionen. Förändringen leder till att den lutherska läran införs, med gudstjänster och bibeltexter på svenska. Reformationen påverkar både människor tro, utbildningsväsendet och människors relation till kyrkan under lång tid framåt.',
+    imageUrl: 'timedrop/history/sverige/hist3-reformationen-i-sverige.jpg'
   },
   {
     id: 'hist4',
     title: 'Slaget vid Poltava',
     category: 'Sverige',
     year: 1709,
-    description: 'Den svenska armén under Karl XII möter en avgörande motgång när den besegras av den ryska hären vid Poltava. Efter en lång marsch, hårda fälttåg och svåra försörjningsproblem bryts den svenska offensiven. Förlusten markerar slutet på Sveriges ställning som stormakt och inleder en period där andra europeiska makter tar över ledartröjan i regionen.',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Battle_of_Poltava_1709.jpg/400px-Battle_of_Poltava_1709.jpg'
+    description: 'Den svenska armén under Karl XII möter en avgörande motståndare vid staden Poltava. Efter flera års långa fälttåg och svåra försörjningsproblem bryts den svenska offensiven. Nederlaget markerar början på slutet för Sveriges tid som stormakt och leder till att riket successivt förlorar områden och inflytande i Europa.',
+    imageUrl: 'timedrop/history/sverige/hist4-slaget-vid-poltava.jpg'
   },
   {
     id: 'hist5',
-    title: 'Frihetstidens början',
+    title: 'Karl XII dör',
     category: 'Sverige',
-    year: 1719,
-    description: 'Efter Karl XII:s död avskaffas den starka kungamakten och en ny författning ger riksdagen ett betydligt större inflytande. Denna period kallas frihetstiden och kännetecknas av livlig politisk debatt, framväxten av partierna hattar och mössor samt en mer parlamentarisk styrning. Samtidigt utvecklas kultur, vetenskap och handel när landet försöker återhämta sig efter långa krig.'
+    year: 1718,
+    description: 'Under en belägring vid en norsk fästning dör kungen plötsligt efter att ha träffats av ett skott. Hans död är omgärdad av rykten och teorier, men oavsett orsaken markerar den slutet på en epok av aggressiva krig och militära äventyr. Efter hans bortgång förändras Sveriges politik och fokus flyttas successivt från expansion till inre utveckling.',
+    imageUrl: 'timedrop/history/sverige/hist5-karl-xii-dor.jpg'
   },
   {
     id: 'hist6',
     title: 'Gustav III:s statsvälvning',
     category: 'Sverige',
     year: 1772,
-    description: 'Gustav III genomför en oblodig kupp där han återtar stor del av den makt som tidigare flyttats till riksdagen. Genom ett nytt statsskick stärks kungens ställning och beslutsvägarna kortas. Hans regeringstid präglas av kulturell blomstring med teater, opera och konst, men också av ökade motsättningar med delar av adeln som ogillar hans maktpolitik.'
+    description: 'Gustav III genomför en oblodig kupp där han återtar makt från riksdagen och stärker kungens ställning. Genom nya lagar och reformer försöker han modernisera riket, stärka kulturlivet och skapa större ordning i statsförvaltningen. Händelsen leder till en period av starkt kungligt inflytande men också till ökade motsättningar med delar av adeln som ogillar hans maktpolitik.',
+    imageUrl: 'timedrop/history/sverige/hist6-gustav-iii-statsvalvning.jpg'
   },
   {
     id: 'hist7',
     title: 'Gustav III mördas',
     category: 'Sverige',
     year: 1792,
-    description: 'Under en maskeradbal på Operan i Stockholm skjuts Gustav III av en sammansvärjning av missnöjda adelsmän. Kungen skadas svårt och avlider senare av sina skador, vilket skakar om både hovet och rikspolitiken. Mordet blir en symbol för de starka konflikter som fanns kring kungens maktutövning och de samhällsförändringar som pågick i Europa vid samma tid.',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Gustav_III_of_Sweden_assassination.jpg/400px-Gustav_III_of_Sweden_assassination.jpg'
+    description: 'Under en maskeradbal på Operan i Stockholm skjuts kungen av en sammansvuren grupp adelsmän som är missnöjda med hans styre. Han avlider efter en tid av svåra skador, och mordet väcker både bestörtning och osäkerhet i riket. Händelsen markerar slutet på hans reformperiod och bidrar till ett förändrat politiskt klimat med ökad försiktighet kring maktutövning och intriger vid hovet.',
+    imageUrl: 'timedrop/history/sverige/hist7-gustav-iii-mordas.jpg'
   },
   {
     id: 'hist8',
-    title: 'Unionen med Norge upplöses',
+    title: 'Förlusten av Finland',
     category: 'Sverige',
-    year: 1905,
-    description: 'Efter en längre period av politiska konflikter mellan Sverige och Norge beslutar norrmännen att gå sin egen väg. Förhandlingar, mobilisering och starka känslor präglar tiden, men slutet blir fredligt. Unionen upplöses utan krig och Norge blir en självständig stat, samtidigt som relationerna mellan länderna så småningom utvecklas till ett nära samarbete.'
+    year: 1809,
+    description: 'Efter ett hårt krig mot en mäktig granne tvingas Sverige avstå Finland, som länge varit en integrerad del av riket. Separationen blir ett djupt trauma och förändrar kartan i Norden. Förlusten leder också till en intern kris där kungamakten ifrågasätts, en ny grundlag införs och en ny dynasti så småningom tar plats på tronen.',
+    imageUrl: 'timedrop/history/sverige/hist8-forlusten-av-finland.jpg'
   },
   {
     id: 'hist9',
-    title: 'Allmän rösträtt för män',
+    title: 'Sverige får ny regeringsform',
     category: 'Sverige',
-    year: 1909,
-    description: 'Efter lång politisk kamp och påtryckningar från folkrörelser och partier införs allmän och lika rösträtt för män i riksdagsval. Tidigare hade inkomst, förmögenhet och samhällsställning avgjort vem som fick rösta. Reformen ses som ett stort steg mot en mer demokratisk representation, även om kvinnor fortfarande står utanför de nationella valen.'
+    year: 1809,
+    description: 'Efter militärt nederlag och politisk kris beslutas om en ny grundlag som begränsar kungens makt och stärker riksdagens roll. Den nya ordningen skapar en bättre balans mellan de styrande makterna och lägger grunden för den moderna svenska konstitutionen. Dokumentet kommer att påverka hur landet styrs under lång tid framåt.',
+    imageUrl: 'timedrop/history/sverige/hist9-sverige-far-ny-regeringsform.jpg'
   },
   {
     id: 'hist10',
-    title: 'Allmän rösträtt för kvinnor',
+    title: 'Bernadotte blir svensk kronprins',
     category: 'Sverige',
-    year: 1921,
-    description: 'Kvinnor får för första gången delta i val till riksdagen på samma villkor som män. Beslutet föregås av många års arbete från kvinnorörelsen, fackföreningar och politiska partier. Därmed blir Sverige en fullt ut parlamentarisk demokrati där både mäns och kvinnors röster räknas lika i de nationella valen.'
+    year: 1810,
+    description: 'En fransk general väljs oväntat till svensk tronföljare efter att den tidigare kronprinsen avlidit. Valet speglar Sveriges behov av nya allianser och en stabil efterträdare. Den nye kronprinsen tar senare namnet Karl Johan och grundar den dynasti som fortfarande sitter på Sveriges tron.',
+    imageUrl: 'timedrop/history/sverige/hist10-bernadotte-blir-svensk-kronprins.jpg'
   },
   {
     id: 'hist11',
-    title: 'Saltsjöbadsavtalet',
+    title: 'Unionen med Norge bildas',
     category: 'Sverige',
-    year: 1938,
-    description: 'Arbetsgivarorganisationen och fackföreningsrörelsen sluter ett omfattande avtal i Saltsjöbaden som reglerar hur konflikter på arbetsmarknaden ska hanteras. Avtalet lägger grunden för den svenska modellen, där parterna själva tar stort ansvar för löner, villkor och konflikthantering. Resultatet blir färre strejker och lockouter och en mer förutsägbar arbetsmarknad.'
+    year: 1814,
+    description: 'Efter krig och förhandlingar bildas en union där Sverige och Norge har gemensam kung men egna lagar och institutioner. Unionen blir en kompromisslösning i ett skede av stora politiska förändringar i Europa. Förhållandet mellan länderna blir tidvis spänt, men unionen präglar utvecklingen i båda rikena under många år.',
+    imageUrl: 'timedrop/history/sverige/hist11-unionen-med-norge-bildas.jpg'
   },
   {
     id: 'hist12',
-    title: 'Högertrafikomläggningen',
+    title: 'Unionen med Norge upplöses',
     category: 'Sverige',
-    year: 1967,
-    description: 'Under en noggrant planerad natt byter Sverige från vänster- till högertrafik på vägarna. Vägmärken, bussar, korsningar och körfält anpassas i ett enormt logistiskt projekt där myndigheter, frivilliga och media samverkar. Trots oro för kaos går omläggningen förhållandevis lugnt till och blir ett historiskt exempel på ett välorganiserat nationellt ingrepp i vardagen.',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Kungsgatan_1967.jpg/400px-Kungsgatan_1967.jpg'
+    year: 1905,
+    description: 'Genom förhandlingar, folkomröstning och diplomati beslutar Sverige och Norge att upplösa unionen fredligt. Trots att konflikten ett tag riskerar att bli militär lyckas parterna nå en lösning utan krig. Händelsen blir ett exempel på hur stora politiska förändringar kan genomföras genom fredliga medel.',
+    imageUrl: 'timedrop/history/sverige/hist12-unionen-med-norge-upploses.jpg'
   },
   {
     id: 'hist13',
-    title: 'Oscarsteatern invigs',
+    title: 'Allmän och lika rösträtt införs',
     category: 'Sverige',
-    year: 1906,
-    description: 'I centrala Stockholm öppnar en ny praktfull teater med inriktning på operett, musikal och annan scenkonst. Oscarsteatern blir snabbt en betydelsefull kulturarena där både svenska och internationella verk spelas. Byggnaden, inredningen och repertoaren bidrar till att göra den till en av huvudstadens mest välkända scener.'
+    year: 1921,
+    description: 'Efter lång kamp från folkrörelser, kvinnorättskämpar och demokratiaktivister införs allmän och lika rösträtt. Både män och kvinnor får nu samma formella möjlighet att påverka vilka som ska styra landet. Reformen markerar ett avgörande steg mot ett mer demokratiskt samhälle där fler röster blir hörda.',
+    imageUrl: 'timedrop/history/sverige/hist13-allman-och-lika-rostratt-infors.jpg'
   },
   {
     id: 'hist14',
-    title: 'Sveriges Television startar',
+    title: 'Sverige står utanför andra världskriget',
     category: 'Sverige',
-    year: 1956,
-    description: 'De första reguljära tv-sändningarna inleds i Sverige och tv-apparater börjar spridas i hemmen. Nyheter, underhållning, sport och barnprogram når nu människor direkt i vardagsrummet. Med tiden blir tv ett av de viktigaste medierna för att forma samhällsdebatt, kultur och gemensamma upplevelser i landet.'
+    year: 1939,
+    description: 'När ett stort krig bryter ut i Europa väljer Sverige en linje av neutralitet. Genom diplomati, eftergifter och hårda avvägningar försöker landet undvika att dras in i de direkta striderna. Perioden präglas av ransonering, beredskap och moraliska dilemman kring handel och relationer till krigförande länder.',
+    imageUrl: 'timedrop/history/sverige/hist14-sverige-star-utanfor-andra-varldskriget.jpg'
   },
   {
     id: 'hist15',
-    title: 'Olof Palme mördas',
+    title: 'Folkhemmet växer fram',
     category: 'Sverige',
-    year: 1986,
-    description: 'Statsminister Olof Palme skjuts till döds på öppen gata i centrala Stockholm efter ett biobesök med sin hustru. Händelsen chockar landet och leder till en omfattande polis- och utredningsinsats som pågår under mycket lång tid. Mordet blir en mörk vändpunkt i svensk samtidshistoria och väcker frågor om säkerhet, politik och samhällsklimat.'
+    year: 1930,
+    description: 'Idén om folkhemmet blir vägledande för den svenska politiken. Staten bygger ut socialförsäkringar, bostadsprogram, sjukvård och utbildning för att skapa ett mer jämlikt samhälle. Visionen är att alla medborgare ska känna trygghet och delaktighet, oavsett bakgrund och ekonomi.',
+    imageUrl: 'timedrop/history/sverige/hist15-folkhemmet-vaxer-fram.jpg'
   },
   {
     id: 'hist16',
-    title: 'Sverige blir medlem i EU',
+    title: 'Miljonprogrammet',
     category: 'Sverige',
-    year: 1995,
-    description: 'Efter en folkomröstning ansluter sig Sverige till Europeiska unionen och blir del av ett fördjupat europeiskt samarbete. Medlemskapet påverkar lagstiftning, handel, jordbruk, miljöpolitik och människors möjligheter att studera och arbeta i andra medlemsländer. Debatten om för- och nackdelar med integrationen fortsätter långt efter inträdet.'
+    year: 1965,
+    description: 'För att lösa en akut bostadsbrist beslutar staten att på kort tid bygga uppemot en miljon nya lägenheter. Stora bostadsområden växer fram runt om i landet, ofta med moderna lägenheter, grönområden och ny infrastruktur. Programmet förändrar både stadsbild och livsvillkor för många människor, men kommer senare också att diskuteras kritiskt utifrån segregation och stadsplanering.',
+    imageUrl: 'timedrop/history/sverige/hist16-miljonprogrammet.jpg'
   },
   {
     id: 'hist17',
     title: 'Estoniakatastrofen',
     category: 'Sverige',
     year: 1994,
-    description: 'Passagerarfartyget Estonia förliser under en nattlig resa över Östersjön mellan Estland och Sverige. Fartyget tar snabbt in vatten och sjunker, och endast en mindre del av de ombordvarande överlever. Katastrofen blir en nationell tragedi och leder till omfattande utredningar, minnesceremonier och en långvarig diskussion om sjösäkerhet och ansvar.'
+    description: 'Passagerarfartyget Estonia förliser under en nattlig resa över Östersjön. Olyckan sker snabbt och under dramatiska förhållanden, och en stor majoritet av de ombordvarande omkommer. Katastrofen blir en nationell tragedi och leder till omfattande utredningar, minnesceremonier och en långvarig diskussion om sjösäkerhet och ansvar.',
+    imageUrl: 'timedrop/history/sverige/hist17-estoniakatastrofen.jpg'
   },
   {
     id: 'hist18',
     title: 'Folkskolan blir obligatorisk',
     category: 'Sverige',
     year: 1842,
-    description: 'Genom en ny skolordning beslutas att alla barn i landet ska få grundläggande undervisning. Varje socken får ansvar för att ordna skola, lokaler och lärare, vilket steg för steg bygger upp ett nationellt skolsystem. Reformen ökar läskunnigheten, ger fler möjlighet att ta del av samhällsinformation och minskar skillnaderna mellan olika delar av landet.'
+    description: 'Genom en ny skolordning beslutas att alla barn i landet ska få grundläggande undervisning. Varje socken får ansvar för att ordna skola, lokaler och lärare, vilket steg för steg bygger upp ett nationellt skolsystem. Reformen ökar läskunnigheten, ger fler möjlighet att ta del av samhällsinformation och minskar skillnaderna mellan olika delar av landet.',
+    imageUrl: 'timedrop/history/sverige/hist18-folkskolan-blir-obligatorisk.jpg'
   },
+  {
+    id: 'hist19',
+    title: 'Öppnandet av Stockholms tunnelbana',
+    category: 'Sverige',
+    year: 1950,
+    description: 'När huvudstaden växte i både befolkning och trafikbehov växte också drömmen om ett snabbt, pålitligt och modernt transportsystem som kunde knyta samman stadens olika delar. Den idé som tidigare bara funnits som skisser och visioner blev till slut verklighet när de första tågen började rulla under marken. För resenärerna innebar det ett helt nytt sätt att ta sig fram — oberoende av vädret, gatornas trängsel och avståndet mellan ytterområden och centrum. Tunnelbanans öppning markerade början på ett nytt kapitel i svensk stadsutveckling och blev snabbt en självklar del av både vardagslivet och stadens identitet.',
+    imageUrl: 'timedrop/history/sverige/hist19-oppnandet-av-stockholms-tunnelbana.jpg'
+  },
+  {
+    id: 'hist20',
+    title: 'Reformen då Sverige bytte från vänster- till högertrafik',
+    category: 'Sverige',
+    year: 1967,
+    description: 'Under lång tid färdades svenskar på vägens vänstra sida, trots att nästan alla grannländer hade valt den motsatta ordningen. Detta skapade både praktiska problem och ökade risker när trafiken mellan länderna växte. Efter år av debatt, planering och noggrant förberedelsearbete fattades till slut beslutet att genomföra ett av de mest omfattande trafikskiftena i landets historia. När själva dagen kom stod poliser, militärer och frivilliga redo över hela landet för att lotsa trafiken rätt. Bilar, bussar och cyklar stannade upp, växlade sida och anpassade sig till de nya reglerna. Reformen blev ett tekniskt och logistiskt kraftprov som fortfarande betraktas som ett av de mest välkoordinerade samhällsprojekten i modern tid.',
+    imageUrl: 'timedrop/history/sverige/hist20-reformen-da-sverige-bytte-fran-vanster-till-hogertrafik.jpg'
+  },
+
   
    // VÄRLDEN - Viktiga globala händelser
   {
