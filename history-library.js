@@ -9,7 +9,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1523,
     description: 'Gustav Vasa väljs till kung efter att ha lett ett uppror mot den danska övermakten och Kalmarunionen. Genom att samla rikets makt till en stark kungaroll lägger han grunden för en mer sammanhållen svensk stat med gemensamt skattesystem, central styrning från Stockholm och en tydligare nationell identitet.',
-    imageUrl: 'timedrop/history/sverige/hist1-gustav-vasa-blir-kung.png'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist1-gustav-vasa-blir-kung.png'
   },
   {
     id: 'hist2',
@@ -17,7 +17,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1520,
     description: 'Under en kunglig kröningsfest i Stockholm grips en stor grupp svenska adelsmän, präster och borgare anklagade för högförräderi. På Stortorget i Gamla stan avrättas ett stort antal personer offentligt, vilket sprider skräck i riket men också väcker stark vrede. Händelsen blir en katalysator för det motstånd som till slut störtar den danska kungen och banar väg för Gustav Vasas maktövertagande.',
-    imageUrl: 'timedrop/history/sverige/hist2-stockholms-blodbad.png'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist2-stockholms-blodbad.png'
   },
   {
     id: 'hist3',
@@ -25,7 +25,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1527,
     description: 'Vid en stor rikssamling i Västerås bryter Sverige stegvis med den katolska kyrkan och den påvliga makten. Kyrkans rikedomar dras in till kronan och kungen får ökat inflytande över religionen. Förändringen leder till att den lutherska läran införs, med gudstjänster och bibeltexter på svenska. Reformationen påverkar både människor tro, utbildningsväsendet och människors relation till kyrkan under lång tid framåt.',
-    imageUrl: 'timedrop/history/sverige/hist3-reformationen-i-sverige.png'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist3-reformationen-i-sverige.png'
   },
   {
     id: 'hist4',
@@ -33,7 +33,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1709,
     description: 'Den svenska armén under Karl XII möter en avgörande motståndare vid staden Poltava. Efter flera års långa fälttåg och svåra försörjningsproblem bryts den svenska offensiven. Nederlaget markerar början på slutet för Sveriges tid som stormakt och leder till att riket successivt förlorar områden och inflytande i Europa.',
-    imageUrl: 'timedrop/history/sverige/hist4-slaget-vid-poltava.png'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist4-slaget-vid-poltava.png'
   },
   {
     id: 'hist5',
@@ -41,7 +41,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1718,
     description: 'Under en belägring vid en norsk fästning dör kungen plötsligt efter att ha träffats av ett skott. Hans död är omgärdad av rykten och teorier, men oavsett orsaken markerar den slutet på en epok av aggressiva krig och militära äventyr. Efter hans bortgång förändras Sveriges politik och fokus flyttas successivt från expansion till inre utveckling.',
-    imageUrl: 'timedrop/history/sverige/hist5-karl-xii-dor.jpg'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist5-karl-xii-dor.jpg'
   },
   {
     id: 'hist6',
@@ -49,7 +49,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1772,
     description: 'Gustav III genomför en oblodig kupp där han återtar makt från riksdagen och stärker kungens ställning. Genom nya lagar och reformer försöker han modernisera riket, stärka kulturlivet och skapa större ordning i statsförvaltningen. Händelsen leder till en period av starkt kungligt inflytande men också till ökade motsättningar med delar av adeln som ogillar hans maktpolitik.',
-    imageUrl: 'timedrop/history/sverige/hist6-gustav-iii-statsvalvning.jpg'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist6-gustav-iii-statsvalvning.jpg'
   },
   {
     id: 'hist7',
@@ -57,7 +57,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1792,
     description: 'Under en maskeradbal på Operan i Stockholm skjuts kungen av en sammansvuren grupp adelsmän som är missnöjda med hans styre. Han avlider efter en tid av svåra skador, och mordet väcker både bestörtning och osäkerhet i riket. Händelsen markerar slutet på hans reformperiod och bidrar till ett förändrat politiskt klimat med ökad försiktighet kring maktutövning och intriger vid hovet.',
-    imageUrl: 'timedrop/history/sverige/hist7-gustav-iii-mordas.png'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist7-gustav-iii-mordas.png'
   },
   {
     id: 'hist8',
@@ -65,7 +65,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1809,
     description: 'Efter ett hårt krig mot en mäktig granne tvingas Sverige avstå Finland, som länge varit en integrerad del av riket. Separationen blir ett djupt trauma och förändrar kartan i Norden. Förlusten leder också till en intern kris där kungamakten ifrågasätts, en ny grundlag införs och en ny dynasti så småningom tar plats på tronen.',
-    imageUrl: 'timedrop/history/sverige/hist8-forlusten-av-finland.jpg'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist8-forlusten-av-finland.jpg'
   },
   {
     id: 'hist9',
@@ -73,7 +73,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1809,
     description: 'Efter militärt nederlag och politisk kris beslutas om en ny grundlag som begränsar kungens makt och stärker riksdagens roll. Den nya ordningen skapar en bättre balans mellan de styrande makterna och lägger grunden för den moderna svenska konstitutionen. Dokumentet kommer att påverka hur landet styrs under lång tid framåt.',
-    imageUrl: 'timedrop/history/sverige/hist9-sverige-far-ny-regeringsform.png'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist9-sverige-far-ny-regeringsform.png'
   },
   {
     id: 'hist10',
@@ -81,7 +81,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1810,
     description: 'En fransk general väljs oväntat till svensk tronföljare efter att den tidigare kronprinsen avlidit. Valet speglar Sveriges behov av nya allianser och en stabil efterträdare. Den nye kronprinsen tar senare namnet Karl Johan och grundar den dynasti som fortfarande sitter på Sveriges tron.',
-    imageUrl: 'timedrop/history/sverige/hist10-bernadotte-blir-svensk-kronprins.png'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist10-bernadotte-blir-svensk-kronprins.png'
   },
   {
     id: 'hist11',
@@ -89,7 +89,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1814,
     description: 'Efter krig och förhandlingar bildas en union där Sverige och Norge har gemensam kung men egna lagar och institutioner. Unionen blir en kompromisslösning i ett skede av stora politiska förändringar i Europa. Förhållandet mellan länderna blir tidvis spänt, men unionen präglar utvecklingen i båda rikena under många år.',
-    imageUrl: 'timedrop/history/sverige/hist11-unionen-med-norge-bildas.png'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist11-unionen-med-norge-bildas.png'
   },
   {
     id: 'hist12',
@@ -97,7 +97,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1905,
     description: 'Genom förhandlingar, folkomröstning och diplomati beslutar Sverige och Norge att upplösa unionen fredligt. Trots att konflikten ett tag riskerar att bli militär lyckas parterna nå en lösning utan krig. Händelsen blir ett exempel på hur stora politiska förändringar kan genomföras genom fredliga medel.',
-    imageUrl: 'timedrop/history/sverige/hist12-unionen-med-norge-upploses.jpg'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist12-unionen-med-norge-upploses.jpg'
   },
   {
     id: 'hist13',
@@ -105,7 +105,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1921,
     description: 'Efter lång kamp från folkrörelser, kvinnorättskämpar och demokratiaktivister införs allmän och lika rösträtt. Både män och kvinnor får nu samma formella möjlighet att påverka vilka som ska styra landet. Reformen markerar ett avgörande steg mot ett mer demokratiskt samhälle där fler röster blir hörda.',
-    imageUrl: 'timedrop/history/sverige/hist13-allman-och-lika-rostratt-infors.png'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist13-allman-och-lika-rostratt-infors.png'
   },
   {
     id: 'hist14',
@@ -113,7 +113,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1939,
     description: 'När ett stort krig bryter ut i Europa väljer Sverige en linje av neutralitet. Genom diplomati, eftergifter och hårda avvägningar försöker landet undvika att dras in i de direkta striderna. Perioden präglas av ransonering, beredskap och moraliska dilemman kring handel och relationer till krigförande länder.',
-    imageUrl: 'timedrop/history/sverige/hist14-sverige-star-utanfor-andra-varldskriget.png'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist14-sverige-star-utanfor-andra-varldskriget.png'
   },
   {
     id: 'hist15',
@@ -121,7 +121,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1930,
     description: 'Idén om folkhemmet blir vägledande för den svenska politiken. Staten bygger ut socialförsäkringar, bostadsprogram, sjukvård och utbildning för att skapa ett mer jämlikt samhälle. Visionen är att alla medborgare ska känna trygghet och delaktighet, oavsett bakgrund och ekonomi.',
-    imageUrl: 'timedrop/history/sverige/hist15-folkhemmet-vaxer-fram.jpg'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist15-folkhemmet-vaxer-fram.jpg'
   },
   {
     id: 'hist16',
@@ -129,7 +129,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1965,
     description: 'För att lösa en akut bostadsbrist beslutar staten att på kort tid bygga uppemot en miljon nya lägenheter. Stora bostadsområden växer fram runt om i landet, ofta med moderna lägenheter, grönområden och ny infrastruktur. Programmet förändrar både stadsbild och livsvillkor för många människor, men kommer senare också att diskuteras kritiskt utifrån segregation och stadsplanering.',
-    imageUrl: 'timedrop/history/sverige/hist16-miljonprogrammet.jpg'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist16-miljonprogrammet.jpg'
   },
   {
     id: 'hist17',
@@ -137,7 +137,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1994,
     description: 'Passagerarfartyget Estonia förliser under en nattlig resa över Östersjön. Olyckan sker snabbt och under dramatiska förhållanden, och en stor majoritet av de ombordvarande omkommer. Katastrofen blir en nationell tragedi och leder till omfattande utredningar, minnesceremonier och en långvarig diskussion om sjösäkerhet och ansvar.',
-    imageUrl: 'timedrop/history/sverige/hist17-estoniakatastrofen.jpg'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist17-estoniakatastrofen.jpg'
   },
   {
     id: 'hist18',
@@ -145,7 +145,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1842,
     description: 'Genom en ny skolordning beslutas att alla barn i landet ska få grundläggande undervisning. Varje socken får ansvar för att ordna skola, lokaler och lärare, vilket steg för steg bygger upp ett nationellt skolsystem. Reformen ökar läskunnigheten, ger fler möjlighet att ta del av samhällsinformation och minskar skillnaderna mellan olika delar av landet.',
-    imageUrl: 'timedrop/history/sverige/hist18-folkskolan-blir-obligatorisk.png'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist18-folkskolan-blir-obligatorisk.png'
   },
   {
     id: 'hist19',
@@ -153,7 +153,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1950,
     description: 'När huvudstaden växte i både befolkning och trafikbehov växte också drömmen om ett snabbt, pålitligt och modernt transportsystem som kunde knyta samman stadens olika delar. Den idé som tidigare bara funnits som skisser och visioner blev till slut verklighet när de första tågen började rulla under marken. För resenärerna innebar det ett helt nytt sätt att ta sig fram — oberoende av vädret, gatornas trängsel och avståndet mellan ytterområden och centrum. Tunnelbanans öppning markerade början på ett nytt kapitel i svensk stadsutveckling och blev snabbt en självklar del av både vardagslivet och stadens identitet.',
-    imageUrl: 'timedrop/history/sverige/hist19-oppnandet-av-stockholms-tunnelbana.jpg'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist19-oppnandet-av-stockholms-tunnelbana.jpg'
   },
   {
     id: 'hist20',
@@ -161,7 +161,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1967,
     description: 'Under lång tid färdades svenskar på vägens vänstra sida, trots att nästan alla grannländer hade valt den motsatta ordningen. Detta skapade både praktiska problem och ökade risker när trafiken mellan länderna växte. Efter år av debatt, planering och noggrant förberedelsearbete fattades till slut beslutet att genomföra ett av de mest omfattande trafikskiftena i landets historia. När själva dagen kom stod poliser, militärer och frivilliga redo över hela landet för att lotsa trafiken rätt. Bilar, bussar och cyklar stannade upp, växlade sida och anpassade sig till de nya reglerna. Reformen blev ett tekniskt och logistiskt kraftprov som fortfarande betraktas som ett av de mest välkoordinerade samhällsprojekten i modern tid.',
-    imageUrl: 'timedrop/history/sverige/hist20-reformen-da-sverige-bytte-fran-vanster-till-hogertrafik.jpg'
+    imageUrl: 'https://timedrop.se/TimeDrop/history/sverige/hist20-reformen-da-sverige-bytte-fran-vanster-till-hogertrafik.jpg'
   },
 
   
