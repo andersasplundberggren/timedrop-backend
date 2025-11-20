@@ -9,7 +9,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1523,
     description: 'Gustav Vasa väljs till kung efter att ha lett ett uppror mot den danska övermakten och Kalmarunionen. Genom att samla rikets makt till en stark kungaroll lägger han grunden för en mer sammanhållen svensk stat med gemensamt skattesystem, central styrning från Stockholm och en tydligare nationell identitet.',
-    imageUrl: 'timedrop/history/sverige/hist1-gustav-vasa-blir-kung.jpg'
+    imageUrl: 'timedrop/history/sverige/hist1-gustav-vasa-blir-kung.png'
   },
   {
     id: 'hist2',
@@ -17,7 +17,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1520,
     description: 'Under en kunglig kröningsfest i Stockholm grips en stor grupp svenska adelsmän, präster och borgare anklagade för högförräderi. På Stortorget i Gamla stan avrättas ett stort antal personer offentligt, vilket sprider skräck i riket men också väcker stark vrede. Händelsen blir en katalysator för det motstånd som till slut störtar den danska kungen och banar väg för Gustav Vasas maktövertagande.',
-    imageUrl: 'timedrop/history/sverige/hist2-stockholms-blodbad.jpg'
+    imageUrl: 'timedrop/history/sverige/hist2-stockholms-blodbad.png'
   },
   {
     id: 'hist3',
@@ -25,7 +25,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1527,
     description: 'Vid en stor rikssamling i Västerås bryter Sverige stegvis med den katolska kyrkan och den påvliga makten. Kyrkans rikedomar dras in till kronan och kungen får ökat inflytande över religionen. Förändringen leder till att den lutherska läran införs, med gudstjänster och bibeltexter på svenska. Reformationen påverkar både människor tro, utbildningsväsendet och människors relation till kyrkan under lång tid framåt.',
-    imageUrl: 'timedrop/history/sverige/hist3-reformationen-i-sverige.jpg'
+    imageUrl: 'timedrop/history/sverige/hist3-reformationen-i-sverige.png'
   },
   {
     id: 'hist4',
@@ -33,7 +33,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1709,
     description: 'Den svenska armén under Karl XII möter en avgörande motståndare vid staden Poltava. Efter flera års långa fälttåg och svåra försörjningsproblem bryts den svenska offensiven. Nederlaget markerar början på slutet för Sveriges tid som stormakt och leder till att riket successivt förlorar områden och inflytande i Europa.',
-    imageUrl: 'timedrop/history/sverige/hist4-slaget-vid-poltava.jpg'
+    imageUrl: 'timedrop/history/sverige/hist4-slaget-vid-poltava.png'
   },
   {
     id: 'hist5',
@@ -57,7 +57,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1792,
     description: 'Under en maskeradbal på Operan i Stockholm skjuts kungen av en sammansvuren grupp adelsmän som är missnöjda med hans styre. Han avlider efter en tid av svåra skador, och mordet väcker både bestörtning och osäkerhet i riket. Händelsen markerar slutet på hans reformperiod och bidrar till ett förändrat politiskt klimat med ökad försiktighet kring maktutövning och intriger vid hovet.',
-    imageUrl: 'timedrop/history/sverige/hist7-gustav-iii-mordas.jpg'
+    imageUrl: 'timedrop/history/sverige/hist7-gustav-iii-mordas.png'
   },
   {
     id: 'hist8',
@@ -73,7 +73,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1809,
     description: 'Efter militärt nederlag och politisk kris beslutas om en ny grundlag som begränsar kungens makt och stärker riksdagens roll. Den nya ordningen skapar en bättre balans mellan de styrande makterna och lägger grunden för den moderna svenska konstitutionen. Dokumentet kommer att påverka hur landet styrs under lång tid framåt.',
-    imageUrl: 'timedrop/history/sverige/hist9-sverige-far-ny-regeringsform.jpg'
+    imageUrl: 'timedrop/history/sverige/hist9-sverige-far-ny-regeringsform.png'
   },
   {
     id: 'hist10',
@@ -81,7 +81,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1810,
     description: 'En fransk general väljs oväntat till svensk tronföljare efter att den tidigare kronprinsen avlidit. Valet speglar Sveriges behov av nya allianser och en stabil efterträdare. Den nye kronprinsen tar senare namnet Karl Johan och grundar den dynasti som fortfarande sitter på Sveriges tron.',
-    imageUrl: 'timedrop/history/sverige/hist10-bernadotte-blir-svensk-kronprins.jpg'
+    imageUrl: 'timedrop/history/sverige/hist10-bernadotte-blir-svensk-kronprins.png'
   },
   {
     id: 'hist11',
@@ -89,7 +89,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1814,
     description: 'Efter krig och förhandlingar bildas en union där Sverige och Norge har gemensam kung men egna lagar och institutioner. Unionen blir en kompromisslösning i ett skede av stora politiska förändringar i Europa. Förhållandet mellan länderna blir tidvis spänt, men unionen präglar utvecklingen i båda rikena under många år.',
-    imageUrl: 'timedrop/history/sverige/hist11-unionen-med-norge-bildas.jpg'
+    imageUrl: 'timedrop/history/sverige/hist11-unionen-med-norge-bildas.png'
   },
   {
     id: 'hist12',
@@ -105,7 +105,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1921,
     description: 'Efter lång kamp från folkrörelser, kvinnorättskämpar och demokratiaktivister införs allmän och lika rösträtt. Både män och kvinnor får nu samma formella möjlighet att påverka vilka som ska styra landet. Reformen markerar ett avgörande steg mot ett mer demokratiskt samhälle där fler röster blir hörda.',
-    imageUrl: 'timedrop/history/sverige/hist13-allman-och-lika-rostratt-infors.jpg'
+    imageUrl: 'timedrop/history/sverige/hist13-allman-och-lika-rostratt-infors.png'
   },
   {
     id: 'hist14',
@@ -113,7 +113,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1939,
     description: 'När ett stort krig bryter ut i Europa väljer Sverige en linje av neutralitet. Genom diplomati, eftergifter och hårda avvägningar försöker landet undvika att dras in i de direkta striderna. Perioden präglas av ransonering, beredskap och moraliska dilemman kring handel och relationer till krigförande länder.',
-    imageUrl: 'timedrop/history/sverige/hist14-sverige-star-utanfor-andra-varldskriget.jpg'
+    imageUrl: 'timedrop/history/sverige/hist14-sverige-star-utanfor-andra-varldskriget.png'
   },
   {
     id: 'hist15',
@@ -145,7 +145,7 @@ const historyLibrary = [
     category: 'Sverige',
     year: 1842,
     description: 'Genom en ny skolordning beslutas att alla barn i landet ska få grundläggande undervisning. Varje socken får ansvar för att ordna skola, lokaler och lärare, vilket steg för steg bygger upp ett nationellt skolsystem. Reformen ökar läskunnigheten, ger fler möjlighet att ta del av samhällsinformation och minskar skillnaderna mellan olika delar av landet.',
-    imageUrl: 'timedrop/history/sverige/hist18-folkskolan-blir-obligatorisk.jpg'
+    imageUrl: 'timedrop/history/sverige/hist18-folkskolan-blir-obligatorisk.png'
   },
   {
     id: 'hist19',
