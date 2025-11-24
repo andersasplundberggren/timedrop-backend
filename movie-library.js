@@ -5,10 +5,10 @@
 export const movieCategories = {
   // Decennier
   'klassiker': [
-    { id: 'mov200', title: 'Casablanca', year: 1942, director: 'Michael Curtiz', youtubeId: 'BkL9l7qovsE' },
-    { id: 'mov201', title: 'Citizen Kane', year: 1941, director: 'Orson Welles', youtubeId: 'zyv19bg0scg' },
-    { id: 'mov202', title: 'Borta med vinden', year: 1939, director: 'Victor Fleming', youtubeId: 'CqrN9S4Pfrs' },
-    { id: 'mov203', title: 'Psycho', year: 1960, director: 'Alfred Hitchcock', youtubeId: 'Wz719b9QUqY' },
+    { id: 'mov200', title: 'Casablanca', year: 1942, director: 'Michael Curtiz', youtubeId: 'MF7JH_54d8c' },
+    { id: 'mov201', title: 'Citizen Kane', year: 1941, director: 'Orson Welles', youtubeId: 'fXf2LGhW66M' },
+    { id: 'mov202', title: 'Borta med vinden', year: 1939, director: 'Victor Fleming', youtubeId: 'h2oX0zQA67U' },
+    { id: 'mov203', title: 'Psycho', year: 1960, director: 'Alfred Hitchcock', youtubeId: 'BwVKSGu8wEA' },
     { id: 'mov204', title: '12 Angry Men', year: 1957, director: 'Sidney Lumet', youtubeId: 'TEN-2uTi2c0' },
     { id: 'mov205', title: 'Vertigo', year: 1958, director: 'Alfred Hitchcock', youtubeId: 'ijkJiGLRT3k' },
     { id: 'mov206', title: 'Lawrence of Arabia', year: 1962, director: 'David Lean', youtubeId: 'SNHuwlLYhzc' },
