@@ -1,7 +1,7 @@
 // ========================
 // TimeDrop backend - MULTI-QUIZ SUPPORT
 // Stödjer: musik, film, historia
-// Uppdaterad logik: Gemensam "självläkande" tidslinje
+// Inkluderar: Force End Round & Self-healing Timeline
 // ========================
 
 import 'dotenv/config';
@@ -9,12 +9,11 @@ import express from 'express';
 import http from 'http';
 import { Server as SocketIOServer } from 'socket.io';
 import cors from 'cors';
+
+// Importera bibliotek (se till att filerna finns i samma mapp)
 import { songCategories, getRandomSongs } from './song-library.js';
 import { movieCategories, getRandomMovies } from './movie-library.js';
 import { getRandomHistory, getHistoryCategories } from './history-library.js';
-
-// import { inventionCategories, getRandomInventions } from './invention-library.js';
-// import { gameCategories, getRandomGames } from './game-library.js';
 
 const app = express();
 const server = http.createServer(app);
@@ -164,7 +163,7 @@ app.get('/history-categories', (req, res) => {
 });
 
 // =========================
-// Spellogik (UPDATED)
+// Spellogik
 // =========================
 
 const games = {};
@@ -251,7 +250,7 @@ io.on('connection', (socket) => {
     io.to(game.hostId).emit('player_joined', { gameId, playerId: socket.id, name, count: Object.keys(game.players).length });
   });
 
-  // 3. STARTA RUNDA (Skickar Master Timeline)
+  // 3. STARTA RUNDA
   socket.on('start_round', async ({ gameId }) => {
     const game = games[gameId];
     if (!game || socket.id !== game.hostId) return;
@@ -269,7 +268,6 @@ io.on('connection', (socket) => {
     // Hämta media (Spotify/Youtube/Bild)
     let previewUrl = null, spotifyUri = null, imageUrl = null, youtubeId = null;
     
-    // ... (Här behåller vi din existerande logik för att hämta media, kortat för översikt)
     // För Musik: Auto-sök Spotify om inloggad
     if (game.quizType === 'music' && isSpotifyAuthed(game)) {
       try {
@@ -290,8 +288,7 @@ io.on('connection', (socket) => {
       imageUrl = item.imageUrl;
     }
 
-    // SKICKA TILL SPELARE
-    // VIKTIGT: Vi skickar med 'timeline' (Master Timeline) till alla!
+    // SKICKA TILL SPELARE (MED RÄTT TIDSILNJE)
     io.to(gameId).emit('timeline_round_started', {
       gameId,
       round: game.currentRoundIndex + 1,
@@ -301,24 +298,23 @@ io.on('connection', (socket) => {
         title: item.title, 
         artist: item.artist,
         category: item.category,
-        // OBS: Skicka INTE 'year' här!
       },
       timeline: game.masterTimeline // Skickar den sanna tidslinjen
     });
 
-    // SKICKA TILL MASTER (Facit/Media)
+    // SKICKA TILL MASTER
     io.to(game.hostId).emit('master_preview', {
       gameId,
       title: item.title,
       artist: item.artist,
-      year: item.year, // Master får se året direkt
+      year: item.year,
       previewUrl, spotifyUri, imageUrl, youtubeId
     });
 
     game.currentRoundIndex++;
   });
 
-  // 4. TA EMOT SVAR (Jämför mot Master Timeline)
+  // 4. TA EMOT SVAR
   socket.on('submit_position', ({ gameId, position }) => {
     const game = games[gameId];
     if (!game || !game.currentItem) return;
@@ -326,48 +322,36 @@ io.on('connection', (socket) => {
     const player = game.players[socket.id];
     if (!player) return;
 
-    // -- NY LOGIK: Jämför position (lucka) mot Master Timeline --
     const timeline = game.masterTimeline;
     const cardToPlace = game.currentItem;
     const submittedIndex = parseInt(position, 10);
     
     let isCorrect = true;
 
-    // Kolla kortet FÖRE (om det finns)
-    // Om nya kortet är ÄLDRE än kortet till vänster -> FEL
+    // Kolla luckor
     if (submittedIndex > 0) {
       const prevCard = timeline[submittedIndex - 1];
       if (cardToPlace.year < prevCard.year) isCorrect = false;
     }
-
-    // Kolla kortet EFTER (om det finns)
-    // Om nya kortet är NYARE än kortet till höger -> FEL
     if (submittedIndex < timeline.length) {
       const nextCard = timeline[submittedIndex];
       if (cardToPlace.year > nextCard.year) isCorrect = false;
     }
 
-    // Poängsättning
-    const points = isCorrect ? 10 : 0; // Exempel: 10 poäng för rätt lucka
+    const points = isCorrect ? 10 : 0;
     player.score += points;
 
-    // Spara att spelaren har gissat
     game.guesses[socket.id] = { 
       position: submittedIndex, 
       correct: isCorrect, 
       points 
     };
 
-    // Skicka bekräftelse till spelaren (skicka tillbaka tidslinjen så vyn inte buggar)
     socket.emit('position_received', { timeline: game.masterTimeline });
 
-    // Uppdatera Master Live (Visar att spelaren svarat)
-    // För att master-vyn inte ska krascha skickar vi en "fejkad" timeline 
-    // som bara visar var spelaren *tror* den ligger, eller bara status.
     io.to(game.hostId).emit('timeline_player_update', {
       playerId: player.id,
       name: player.name,
-      // Vi skickar en array som representerar var spelaren la kortet för visualisering
       timeline: [`Svarade på plats ${submittedIndex} (${isCorrect ? 'Rätt' : 'Fel'})`] 
     });
 
@@ -380,19 +364,27 @@ io.on('connection', (socket) => {
     }
   });
 
-  // 5. AVSLUTA RUNDA (Uppdatera Master Timeline)
+  // 5. TVINGA AVSLUT AV RUNDA (Ny funktion)
+  socket.on('force_end_round', ({ gameId }) => {
+    const game = games[gameId];
+    if (!game || socket.id !== game.hostId) return;
+
+    if (game.currentItem) {
+      console.log(`⚠️ Master forced end of round in game ${gameId}`);
+      endTimelineRound(game);
+    }
+  });
+
+  // 6. AVSLUTA RUNDA (Logik)
   function endTimelineRound(game) {
     if (!game.currentItem) return;
 
-    // 1. Lägg till kortet i den sanna tidslinjen
     game.masterTimeline.push(game.currentItem);
     game.playedItems.push(game.currentItem);
-    
-    // 2. SORTERA tidslinjen efter år (Självläkande!)
     game.masterTimeline.sort((a, b) => a.year - b.year);
 
-    // Skapa en sammanfattning för master
     const timelinesSummary = Object.keys(game.players).map(pid => ({
+      playerId: pid,
       name: game.players[pid].name,
       correct: game.guesses[pid]?.correct || false,
       points: game.guesses[pid]?.points || 0
@@ -402,7 +394,7 @@ io.on('connection', (socket) => {
 
     io.to(game.hostId).emit('timeline_round_summary', {
       gameId: game.id,
-      timelines: timelinesSummary, // Lista med vem som hade rätt/fel
+      timelines: timelinesSummary,
       scores
     });
 
@@ -410,21 +402,15 @@ io.on('connection', (socket) => {
 
     game.currentItem = null;
     game.guesses = {};
-    console.log(`✅ Round ended. Timeline length: ${game.masterTimeline.length}`);
   }
 
-  socket.on('end_timeline_round', ({ gameId }) => {
-    const game = games[gameId];
-    if (game && socket.id === game.hostId) endTimelineRound(game);
-  });
-
+  // 7. AVSLUTA SPEL
   socket.on('end_game', ({ gameId }) => {
     const game = games[gameId];
     if (!game || socket.id !== game.hostId) return;
 
     const scores = buildScores(game);
-    // Skicka facit
-    const answer = [...game.masterTimeline]; // Den är redan sorterad!
+    const answer = [...game.masterTimeline];
 
     io.to(gameId).emit('game_ended', { 
       gameId, 
